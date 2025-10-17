@@ -4,6 +4,7 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import InfoIcon from '@mui/icons-material/Info';
 import HomeIcon from '@mui/icons-material/Home';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
@@ -30,6 +31,7 @@ export default function SimpleBottomNavigation() {
       >
         <BottomNavigationAction label="Home" icon={<HomeIcon />} />
         <BottomNavigationAction label="Info" icon={<InfoIcon />} />
+        <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
       </BottomNavigation>
     </Box>
   );

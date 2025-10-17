@@ -6,9 +6,9 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import BottomNavBar from './components/BottomNavBar'
+import Battery from './components/Battery'
 
-//TODO: Battery, Info page??
-
+//TODO: Reminders to empty the container
 
 // Loading screen
 function CircularProgressWithLabel(props) {
@@ -33,12 +33,17 @@ function CircularProgressWithLabel(props) {
   );
 }
 
+
+
 function App() {
   const [count, setCount] = useState(0)
   const [showAlert, setShowAlert] = useState(false)
   const [timeLeft, setTimeLeft] = useState(15)
   const [isEmptying, setIsEmptying] = useState(false)
   const [progress, setProgress] = useState(0)
+
+  const [batteryLevel, setBatteryLevel] = useState(85) // Mock battery level
+  const [isCharging, setIsCharging] = useState(false)  // Mock charging status
 
   useEffect(() => {
     // Timer effect
@@ -75,6 +80,7 @@ function App() {
 
   return (
     <Box sx={{
+      position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -82,6 +88,8 @@ function App() {
       minHeight: 'calc(100vh - 56px)', //bottom nav height :D
       padding: 2
     }}>
+      <Battery level={batteryLevel} charging={isCharging} />
+
       <Button
         variant="contained"
         onClick={buttonHandler}
