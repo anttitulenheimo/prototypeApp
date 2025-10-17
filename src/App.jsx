@@ -8,7 +8,8 @@ import Box from '@mui/material/Box'
 import BottomNavBar from './components/BottomNavBar'
 import Battery from './components/Battery'
 
-//TODO: Reminders to empty the container
+//TODO: Reminders to empty the container, Warning when it is full
+//TODO: Info tells how many bugs there are inside (a bug is inside)
 
 // Loading screen
 function CircularProgressWithLabel(props) {
@@ -44,6 +45,7 @@ function App() {
 
   const [batteryLevel, setBatteryLevel] = useState(85) // Mock battery level
   const [isCharging, setIsCharging] = useState(false)  // Mock charging status
+  const [isFull, setIsFull] = useState(false)
 
   useEffect(() => {
     // Timer effect
@@ -78,6 +80,18 @@ function App() {
     )
   }
 
+  const containerIsFull = () => { //Alerts  when the container is full
+    return (
+      <Alert severity="warning">
+        Säiliö on täynnä ja se pitää tyhjentää
+      </Alert>
+    )
+  }
+
+  const mockButtonHandler = () => {
+      setIsFull(true)
+  }
+
   return (
     <Box sx={{
       position: 'relative',
@@ -90,12 +104,14 @@ function App() {
     }}>
       <Battery level={batteryLevel} charging={isCharging} />
 
+      {isFull && containerIsFull()}
+
       <Button
         variant="contained"
         onClick={buttonHandler}
         disabled={isEmptying}
       >
-        Tyhjennä
+       Tyhjennä
       </Button>
 
       {isEmptying && (
@@ -119,6 +135,7 @@ function App() {
         </Stack>
       )}
 
+    <Button variant="outlined" onClick={mockButtonHandler}>Make it full</Button>
 
     <BottomNavBar></BottomNavBar>
     </Box>
