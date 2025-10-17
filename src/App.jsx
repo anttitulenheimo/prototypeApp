@@ -74,7 +74,14 @@ function App() {
   }
 
   return (
-    <div>
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: 'calc(100vh - 56px)', //bottom nav height :D
+      padding: 2
+    }}>
       <Button
         variant="contained"
         onClick={buttonHandler}
@@ -106,7 +113,7 @@ function App() {
 
 
     <BottomNavBar></BottomNavBar>
-    </div>
+    </Box>
   )
 }
 
