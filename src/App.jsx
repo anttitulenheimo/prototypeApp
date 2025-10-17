@@ -5,6 +5,10 @@ import Stack from '@mui/material/Stack'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import BottomNavBar from './components/BottomNavBar'
+
+//TODO: Battery, Info page??
+
 
 // Loading screen
 function CircularProgressWithLabel(props) {
@@ -99,6 +103,9 @@ function App() {
           </Alert>
         </Stack>
       )}
+
+
+    <BottomNavBar></BottomNavBar>
     </div>
   )
 }
