@@ -29,9 +29,9 @@ function BottomNavBar() {
           }
         }}
       >
-        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Koti" icon={<HomeIcon />} />
         <BottomNavigationAction label="Info" icon={<InfoIcon />} />
-        <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+        <BottomNavigationAction label="Asetukset" icon={<SettingsIcon />} />
       </BottomNavigation>
     </Paper>
   )

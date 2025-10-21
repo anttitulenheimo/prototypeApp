@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Info from './components/Info'
 import Settings from './components/Settings'
 import BottomNavBar from './components/BottomNavBar'
+import './App.css' // Prevents the scroll bar
 
 
 function App() {

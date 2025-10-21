@@ -17,7 +17,7 @@ const Settings = () => {
     <Box sx={{ p: 3, minHeight: 'calc(100vh - 56px)' }}>
         <Box>
             <Avatar alt="Test User" sx={{ width: 100, height: 100 }}
-                    src="src/assets/aaltoAvatar.png" /> Logged in as Test User
+                    src="src/assets/aaltoAvatar.png" /> Kirjautuneena sisään käyttäjänä Test User
         </Box>
         <List>
           <ListItem disablePadding>
@@ -25,7 +25,7 @@ const Settings = () => {
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText primary="Log out" />
+              <ListItemText primary="Kirjaudu ulos" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -33,21 +33,21 @@ const Settings = () => {
               <ListItemIcon>
                 <AddBoxIcon />
               </ListItemIcon>
-              <ListItemText primary="Add another device" />
+              <ListItemText primary="Lisää toinen laite" />
             </ListItemButton>
           </ListItem>
           <ListItemButton>
               <ListItemIcon>
                 <NotificationsActiveIcon />
               </ListItemIcon>
-              <ListItemText primary="Reminders" />
+              <ListItemText primary="Muistutukset" />
             </ListItemButton>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <LanguageIcon />
               </ListItemIcon>
-              <ListItemText primary="Change language" />
+              <ListItemText primary="Vaihda kieli" />
             </ListItemButton>
           </ListItem>
         </List>
