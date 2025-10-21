@@ -1,9 +1,9 @@
-import BatteryFullIcon from '@mui/icons-material/BatteryFull';
-import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
-import Battery60Icon from '@mui/icons-material/Battery60';
-import Battery20Icon from '@mui/icons-material/Battery20';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import BatteryFullIcon from '@mui/icons-material/BatteryFull'
+import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull'
+import Battery60Icon from '@mui/icons-material/Battery60'
+import Battery20Icon from '@mui/icons-material/Battery20'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
 const Battery = ({ level, charging }) => {
   //Battery icon is based on level and charging status
@@ -12,7 +12,7 @@ const Battery = ({ level, charging }) => {
     if (level > 70) return <BatteryFullIcon />
     if (level > 30) return <Battery60Icon />
     return <Battery20Icon />
-  };
+  }
 
   return (
     <Box

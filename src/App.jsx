@@ -17,6 +17,7 @@ function App() {
   const [isCharging, setIsCharging] = useState(false)
   const [isFull, setIsFull] = useState(false)
 
+  // Everytime when the app is first rendered the timer is fixed
   useEffect(() => {
     let interval = null
     if (isEmptying && timeLeft > 0) {
@@ -31,7 +32,7 @@ function App() {
       setProgress(0)
     }
     return () => clearInterval(interval);
-  }, [isEmptying, timeLeft]);
+  }, [isEmptying, timeLeft])
 
   const buttonHandler = () => {
     setCount(count + 1)
