@@ -10,14 +10,14 @@ import AddBoxIcon from '@mui/icons-material/AddBox'
 import LanguageIcon from '@mui/icons-material/Language'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import Avatar from '@mui/material/Avatar'
-
+import avatarImg from '../assets/aaltoAvatar.png'
 
 const Settings = () => {
   return (
     <Box sx={{ p: 3, minHeight: 'calc(100vh - 56px)' }}>
         <Box>
             <Avatar alt="Test User" sx={{ width: 100, height: 100 }}
-                    src="src/assets/aaltoAvatar.png" /> Kirjautuneena sisään käyttäjänä Test User
+                    src={avatarImg} /> Kirjautuneena sisään käyttäjänä Test User
         </Box>
         <List>
           <ListItem disablePadding>
