@@ -5,7 +5,7 @@ import Battery20Icon from '@mui/icons-material/Battery20';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-function Battery({ level, charging }) {
+const Battery = ({ level, charging }) => {
   //Battery icon is based on level and charging status
   const getBatteryIcon = () => {
     if (charging) return <BatteryChargingFullIcon />
@@ -31,4 +31,4 @@ function Battery({ level, charging }) {
   )
 }
 
-export default Battery;
+export default Battery

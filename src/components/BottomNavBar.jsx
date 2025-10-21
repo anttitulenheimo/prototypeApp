@@ -1,38 +1,43 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import InfoIcon from '@mui/icons-material/Info';
-import HomeIcon from '@mui/icons-material/Home';
-import SettingsIcon from '@mui/icons-material/Settings';
+import { useNavigate, useLocation } from 'react-router-dom'
+import BottomNavigation from '@mui/material/BottomNavigation'
+import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import HomeIcon from '@mui/icons-material/Home'
+import InfoIcon from '@mui/icons-material/Info'
+import SettingsIcon from '@mui/icons-material/Settings'
+import Paper from '@mui/material/Paper'
 
-export default function SimpleBottomNavigation() {
-  const [value, setValue] = React.useState(0);
+function BottomNavBar() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  
+  const getPathValue = () => {
+    if (location.pathname === '/info') return 1
+    if (location.pathname === '/settings') return 2
+    return 0 // Home is default
+  };
 
   return (
-    <Box sx={{
-      position: 'fixed',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      width: '100%',
-      zIndex: 1000,
-      bgcolor: 'background.paper',
-      borderTop: '1px solid',
-      borderBottom: '1px solid',
-      borderColor: 'divider',
-    }}>
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
       <BottomNavigation
-        showLabels
-        value={value}
+        value={getPathValue()}
         onChange={(event, newValue) => {
-          setValue(newValue);
+          switch (newValue) {
+            case 0: navigate('/'); break
+            case 1: navigate('/info'); break
+            case 2: navigate('/settings'); break
+            default: navigate('/')
+          }
         }}
       >
         <BottomNavigationAction label="Home" icon={<HomeIcon />} />
         <BottomNavigationAction label="Info" icon={<InfoIcon />} />
         <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
       </BottomNavigation>
-    </Box>
-  );
+    </Paper>
+  )
 }
+
+export default BottomNavBar
+
+//TODO: Reminders to empty the container
+//TODO: Info tells how many bugs there are inside (a bug is inside)
