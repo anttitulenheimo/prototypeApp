@@ -16,14 +16,6 @@ const Battery = ({ level, charging }) => {
 
   return (
     <Box
-      sx={{
-        position: 'absolute',
-        top: 16,
-        right: 16,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 0.5
-      }}
     >
       {getBatteryIcon()}
       <Typography variant="body2">{level}%</Typography>

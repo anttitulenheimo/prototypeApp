@@ -1,47 +1,54 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Alert from '@mui/material/Alert'
-import Home from './components/Home'
-import Info from './components/Info'
-import Settings from './components/Settings'
-import BottomNavBar from './components/BottomNavBar'
-import './App.css'
-import ResponsiveAppBar from "./components/ResponsiveAppBar.jsx"; // Prevents the scroll bar
-import Box from '@mui/material/Box';
-
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import ResponsiveAppBar from "./components/ResponsiveAppBar.jsx"
+import Battery from "./components/Battery.jsx"
+import CircularProgressWithLabel from "./components/CircularProgressWithLabel.jsx"
 
 function App() {
+  const DURATION = 5
+
   const [count, setCount] = useState(0)
   const [showAlert, setShowAlert] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(15)
+  const [timeLeft, setTimeLeft] = useState(DURATION)
   const [isEmptying, setIsEmptying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [batteryLevel, setBatteryLevel] = useState(85)
   const [isCharging, setIsCharging] = useState(false)
   const [isFull, setIsFull] = useState(false)
+  const [name, setName] = useState("Oma ansa")
 
-  // Everytime when the app is first rendered the timer is fixed
+  // For timer
   useEffect(() => {
-    let interval = null
-    if (isEmptying && timeLeft > 0) {
-      interval = setInterval(() => {
-        setTimeLeft(prevTime => prevTime - 1)
-        setProgress(prevProgress => prevProgress + 100/15)
-      }, 1000)
-    } else if (timeLeft === 0) {
-      setIsEmptying(false)
-      setShowAlert(true)
-      setTimeLeft(15)
-      setProgress(0)
-    }
-    return () => clearInterval(interval);
-  }, [isEmptying, timeLeft])
+    if (!isEmptying) return
+
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(interval)
+          setIsEmptying(false)
+          setShowAlert(true)
+          setProgress(0)
+          return DURATION
+        }
+        return prev - 1
+      })
+
+      setProgress(prev => prev + 100 / DURATION)
+
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [isEmptying])
 
   const buttonHandler = () => {
-    setCount(count + 1)
+    setCount(prev => prev + 1)
     setShowAlert(false)
     setIsEmptying(true)
-    setTimeLeft(15)
+    setTimeLeft(DURATION)
     setProgress(0)
   }
 
@@ -51,75 +58,67 @@ function App() {
     </Alert>
   )
 
-  const containerIsFull = () => (
-    <Alert severity="warning">
-      Säiliö on täynnä ja se pitää tyhjentää
-    </Alert>
+  return (
+    <>
+      <ResponsiveAppBar />
+
+      <Box sx={{ overflowY: 'auto', p: 2 }}>
+        <Box
+          sx={{
+            backgroundColor: 'grey.200',
+            borderRadius: 4,
+            p: 2,
+            mb: 2
+          }}
+        >
+          <Typography>{name}</Typography>
+          <Battery level={batteryLevel} charging={isCharging} />
+
+          <Button
+            variant="contained"
+            onClick={buttonHandler}
+            disabled={isEmptying}
+          >
+            Tyhjennä
+          </Button>
+
+          {isEmptying && (
+            <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
+              {warningComponent()}
+              <Box display="flex" justifyContent="center" mt={2}>
+                <CircularProgressWithLabel
+                  value={progress}
+                  timeLeft={timeLeft}
+                />
+              </Box>
+            </Stack>
+          )}
+
+          {showAlert && !isEmptying && (
+            <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
+              <Alert severity="success">
+                Säiliö tyhjennetty onnistuneesti
+              </Alert>
+
+              <Alert severity="info">
+                Säiliö tyhjennetty {count} kertaa
+              </Alert>
+            </Stack>
+          )}
+        </Box>
+
+        <Box
+          sx={{
+            backgroundColor: 'grey.300',
+            borderRadius: 4,
+            p: 2
+          }}
+        >
+          Toka osio
+        </Box>
+      </Box>
+    </>
   )
-
-  const mockButtonHandler = () => {
-    setIsFull(true)
-  }
-
-return (
-  <>
-    <ResponsiveAppBar />
-
-    <Box
-      sx={{
-        overflowY: 'auto',
-        p: 2
-      }}
-    >
-      <Box
-        sx={{
-          backgroundColor: 'grey.200',
-          borderRadius: 4,
-          p: 2,
-          mb: 2
-        }}
-      >
-        Eka osio
-      </Box>
-
-      <Box
-        sx={{
-          backgroundColor: 'grey.300',
-          borderRadius: 4,
-          p: 2
-        }}
-      >
-        Toka osio
-      </Box>
-    </Box>
-  </>
-)
-
-
-
 }
 
 export default App
-
-/*    <Router>
-      <Routes>
-        <Route path="/" element={
-          <Home
-            batteryLevel={batteryLevel}
-            isCharging={isCharging}
-            isFull={isFull}
-            containerIsFull={containerIsFull}
-            buttonHandler={buttonHandler}
-            isEmptying={isEmptying}
-            warningComponent={warningComponent}
-            progress={progress}
-            showAlert={showAlert}
-            count={count}
-            mockButtonHandler={mockButtonHandler}
-          />
-        } />
-        <Route path="/info" element={<Info />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-      <BottomNavBar />
-    </Router>*/

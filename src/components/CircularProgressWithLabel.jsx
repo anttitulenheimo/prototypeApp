@@ -3,11 +3,15 @@ import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 
-
-const CircularProgressWithLabel = (props) => {
+const CircularProgressWithLabel = ({ value, timeLeft }) => {
   return (
     <Box position="relative" display="inline-flex">
-      <CircularProgress variant="determinate" {...props} />
+      <CircularProgress
+        variant="determinate"
+        value={value}
+        size={80}
+        thickness={4}
+      />
       <Box
         top={0}
         left={0}
@@ -19,7 +23,7 @@ const CircularProgressWithLabel = (props) => {
         justifyContent="center"
       >
         <Typography variant="caption" component="div" color="text.secondary">
-          {`${Math.round(props.value)}%`}
+          {timeLeft} s
         </Typography>
       </Box>
     </Box>
