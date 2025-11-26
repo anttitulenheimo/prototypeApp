@@ -24,6 +24,10 @@ function App() {
   const [isCharging, setIsCharging] = useState(false)
   const [isFull, setIsFull] = useState(false)
   const [name, setName] = useState("Oma ansa")
+  const [bugsInTrap, setBugsInTrap] = useState(0)
+  const [lastEmptyDate, setLastEmptyDate] = useState("26.11.2026")
+  const [emptyAmountMonth, setEmptyAmountMonth] = useState(0)
+  const [emptyAmountYear, setEmptyAmountYear] = useState(0)
 
   // For timer
   useEffect(() => {
@@ -87,6 +91,8 @@ function App() {
                   <Typography>
                     Tuoksukapselin vaihtoon 2 kuukautta
                   </Typography>
+
+                  <Typography>Ansassa tällä hetkellä {bugsInTrap} ötökkää</Typography>
                 </Stack>
               </Grid>
 
@@ -144,11 +150,12 @@ function App() {
               bgcolor: 'white'
             }}
           >
-            Tilasto osio:
-            - Milloin tyhjennetty viimeksi: Päivämäärä
-            - Tyhjennyskertojen määrä:
-               - Tämä kuukausi
-               - Tämä vuosi
+            <Stack spacing={2}>
+              <Typography>Tilastot</Typography>
+              <Typography>{name} tyhjennetty viimeksi: {lastEmptyDate}</Typography>
+              <Typography>Tyhjennysten määrä tämä kuukausi: {emptyAmountMonth}</Typography>
+              <Typography>Tyhjennysten määrä tämä vuosi: {emptyAmountMonth}</Typography>
+        </Stack>
           </Paper>
         </Box>
       </>
