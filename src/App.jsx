@@ -141,36 +141,35 @@ function App() {
             </Box>
 
             <Grid container spacing={2} alignItems="center">
-              <Grid item xs={8}>
+              <Grid item xs={7} sm={8}>
                 <Stack spacing={1}>
                   <Battery level={batteryLevel} charging={isCharging} />
 
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <ScienceIcon />
-                      <Typography>
-                        Tuoksukapselin vaihtoon 2 kuukautta
-                      </Typography>
-                    </Stack>
+                  <Stack direction="row" spacing={1} alignItems="flex-start">
+                    <ScienceIcon sx={{ flexShrink: 0, mt: 0.5 }} />
+                    <Typography sx={{ wordBreak: 'break-word', flex: 1 }}>
+                      Tuoksukapselin vaihtoon 2 kk
+                    </Typography>
+                  </Stack>
 
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <AdbIcon />
-                      <Typography>
-                        Ansassa tällä hetkellä {bugsInTrap} ötökkää
-                      </Typography>
-                    </Stack>
-
+                  <Stack direction="row" spacing={1} alignItems="flex-start">
+                    <AdbIcon sx={{ flexShrink: 0, mt: 0.5 }} />
+                    <Typography sx={{ wordBreak: 'break-word', flex: 1 }}>
+                      Ansassa ötöiköitä {bugsInTrap}
+                    </Typography>
+                  </Stack>
                 </Stack>
               </Grid>
 
-              <Grid item xs={4} display="flex" justifyContent="flex-end">
+              <Grid item xs={5} sm={4} display="flex" justifyContent="flex-end">
                 <img
                   src={ansaImg}
                   alt="Ansa"
-                  style={{ width: 150, height: 'auto' }}
+                  style={{ width: '100%', maxWidth: 150, height: 'auto' }}
                 />
               </Grid>
-
             </Grid>
+
 
 
             <Button
