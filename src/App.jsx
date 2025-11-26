@@ -13,6 +13,8 @@ import Battery from "./components/Battery.jsx"
 import CircularProgressWithLabel from "./components/CircularProgressWithLabel.jsx"
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/GridLegacy'
+import ScienceIcon from '@mui/icons-material/Science'
+import AdbIcon from '@mui/icons-material/Adb';
 import './app.css'
 
 
@@ -133,11 +135,20 @@ function App() {
                 <Stack spacing={1}>
                   <Battery level={batteryLevel} charging={isCharging} />
 
-                  <Typography>
-                    Tuoksukapselin vaihtoon 2 kuukautta
-                  </Typography>
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <ScienceIcon />
+                      <Typography>
+                        Tuoksukapselin vaihtoon 2 kuukautta
+                      </Typography>
+                    </Stack>
 
-                  <Typography>Ansassa tällä hetkellä {bugsInTrap} ötökkää</Typography>
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <AdbIcon />
+                      <Typography>
+                        Ansassa tällä hetkellä {bugsInTrap} ötökkää
+                      </Typography>
+                    </Stack>
+
                 </Stack>
               </Grid>
 
@@ -203,6 +214,25 @@ function App() {
               <Typography>Tyhjennysten määrä tämä vuosi: {emptyAmountYear}</Typography>
             </Stack>
           </Paper>
+
+          <Paper
+              elevation={1}
+              sx={{
+                borderRadius: 4,
+                p: 2,
+                bgcolor: 'white',
+                mt: 2
+              }}
+            >
+              <Button
+                variant="outlined"
+                fullWidth
+                onClick={() => setBugsInTrap(prev => prev + 1)}
+              >
+                Lisää ötökkä (demo)
+              </Button>
+          </Paper>
+
         </Box>
       </>
     )
