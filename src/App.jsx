@@ -8,6 +8,7 @@ import ResponsiveAppBar from "./components/ResponsiveAppBar.jsx"
 import Battery from "./components/Battery.jsx"
 import CircularProgressWithLabel from "./components/CircularProgressWithLabel.jsx"
 import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/GridLegacy';
 import './app.css';
 
 
@@ -77,7 +78,28 @@ function App() {
             }}
           >
             <Typography>{name}</Typography>
-            <Battery level={batteryLevel} charging={isCharging} />
+
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs={8}>
+                <Stack spacing={1}>
+                  <Battery level={batteryLevel} charging={isCharging} />
+
+                  <Typography>
+                    Tuoksukapselin vaihtoon 2 kuukautta
+                  </Typography>
+                </Stack>
+              </Grid>
+
+              <Grid item xs={4} display="flex" justifyContent="flex-end">
+                <img
+                  src="src/assets/ansa.jpg"
+                  alt="Ansa"
+                  style={{ width: 150, height: 'auto' }}
+                />
+              </Grid>
+
+            </Grid>
+
 
             <Button
               variant="contained"
@@ -98,6 +120,7 @@ function App() {
                   />
                 </Box>
               </Stack>
+
             )}
 
             {showAlert && !isEmptying && (
@@ -121,7 +144,11 @@ function App() {
               bgcolor: 'white'
             }}
           >
-            Toka osio
+            Tilasto osio:
+            - Milloin tyhjennetty viimeksi: Päivämäärä
+            - Tyhjennyskertojen määrä:
+               - Tämä kuukausi
+               - Tämä vuosi
           </Paper>
         </Box>
       </>
