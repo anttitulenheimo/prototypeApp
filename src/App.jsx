@@ -155,7 +155,7 @@ function App() {
                   <Stack direction="row" spacing={1} alignItems="flex-start">
                     <AdbIcon sx={{ flexShrink: 0, mt: 0.5 }} />
                     <Typography sx={{ wordBreak: 'break-word', flex: 1 }}>
-                      Ansassa ötöiköitä {bugsInTrap}
+                      Ansassa ötököitä {bugsInTrap}
                     </Typography>
                   </Stack>
                 </Stack>
