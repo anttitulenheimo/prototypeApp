@@ -11,7 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const settings = ['Tili', 'Laitteen yhdistäminen', 'Viiveen muokkaus'];
+const settings = ['Tili', 'Laitteen yhdistäminen', 'Viiveen muokkaus', 'Lapsilukko'];
 
 function ResponsiveAppBar() {
 

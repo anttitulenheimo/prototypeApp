@@ -7,6 +7,7 @@ import Settings from './components/Settings'
 import BottomNavBar from './components/BottomNavBar'
 import './App.css'
 import ResponsiveAppBar from "./components/ResponsiveAppBar.jsx"; // Prevents the scroll bar
+import Box from '@mui/material/Box';
 
 
 function App() {
@@ -60,10 +61,42 @@ function App() {
     setIsFull(true)
   }
 
-  return (
-      < ResponsiveAppBar />
+return (
+  <>
+    <ResponsiveAppBar />
 
-  )
+    <Box
+      sx={{
+        overflowY: 'auto',
+        p: 2
+      }}
+    >
+      <Box
+        sx={{
+          backgroundColor: 'grey.200',
+          borderRadius: 4,
+          p: 2,
+          mb: 2
+        }}
+      >
+        Eka osio
+      </Box>
+
+      <Box
+        sx={{
+          backgroundColor: 'grey.300',
+          borderRadius: 4,
+          p: 2
+        }}
+      >
+        Toka osio
+      </Box>
+    </Box>
+  </>
+)
+
+
+
 }
 
 export default App
