@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/GridLegacy'
 import ScienceIcon from '@mui/icons-material/Science'
 import AdbIcon from '@mui/icons-material/Adb';
+import ansaImg from './assets/ansa.jpg'
 import './app.css'
 
 
@@ -154,7 +155,7 @@ function App() {
 
               <Grid item xs={4} display="flex" justifyContent="flex-end">
                 <img
-                  src="src/assets/ansa.jpg"
+                  src={ansaImg}
                   alt="Ansa"
                   style={{ width: 150, height: 'auto' }}
                 />

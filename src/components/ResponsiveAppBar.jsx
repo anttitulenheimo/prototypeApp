@@ -10,6 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import aaltoImg from '../assets/aaltoAvatar.png';
 
 const settings = ['Tili', 'Laitteen yhdistäminen', 'Viiveen muokkaus', 'Lapsilukko'];
 
@@ -31,24 +32,6 @@ function ResponsiveAppBar() {
     <AppBar position="static" elevation={0} sx={{ bgcolor: 'grey.200' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
           <Typography
             variant="h5"
             noWrap
@@ -71,7 +54,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Test User" src="/src/assets/aaltoAvatar.png" />
+                <Avatar alt="Test User" src={aaltoImg} />
               </IconButton>
             </Tooltip>
             <Menu
