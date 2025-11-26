@@ -74,13 +74,15 @@ function App() {
           <Typography>{name}</Typography>
           <Battery level={batteryLevel} charging={isCharging} />
 
-          <Button
-            variant="contained"
-            onClick={buttonHandler}
-            disabled={isEmptying}
-          >
-            Tyhjennä
-          </Button>
+        <Button
+          variant="contained"
+          fullWidth
+          onClick={buttonHandler}
+          disabled={isEmptying}
+        >
+          Tyhjennä
+        </Button>
+
 
           {isEmptying && (
             <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
