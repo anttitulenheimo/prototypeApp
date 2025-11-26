@@ -143,6 +143,12 @@ function App() {
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={7} sm={8}>
                 <Stack spacing={1}>
+                  {bugsInTrap > 0 && (
+                    <Alert severity="warning" sx={{ mb: 1 }}>
+                      Ansa vaatii tyhjennyksen
+                    </Alert>
+                  )}
+
                   <Battery level={batteryLevel} charging={isCharging} />
 
                   <Stack direction="row" spacing={1} alignItems="flex-start">
@@ -169,7 +175,6 @@ function App() {
                 />
               </Grid>
             </Grid>
-
 
 
             <Button
