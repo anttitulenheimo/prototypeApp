@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
+import TextField from '@mui/material/TextField'
+import IconButton from '@mui/material/IconButton'
+import EditIcon from '@mui/icons-material/Edit'
+import CheckIcon from '@mui/icons-material/Check'
 import ResponsiveAppBar from "./components/ResponsiveAppBar.jsx"
 import Battery from "./components/Battery.jsx"
 import CircularProgressWithLabel from "./components/CircularProgressWithLabel.jsx"
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/GridLegacy';
-import './app.css';
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/GridLegacy'
+import './app.css'
 
 
 function App() {
@@ -24,6 +28,8 @@ function App() {
   const [isCharging, setIsCharging] = useState(false)
   const [isFull, setIsFull] = useState(false)
   const [name, setName] = useState("Oma ansa")
+  const [isEditingName, setIsEditingName] = useState(false)
+  const [tempName, setTempName] = useState(name)
   const [bugsInTrap, setBugsInTrap] = useState(0)
   const [lastEmptyDate, setLastEmptyDate] = useState("26.11.2026")
   const [emptyAmountMonth, setEmptyAmountMonth] = useState(0)
@@ -40,6 +46,12 @@ function App() {
           setIsEmptying(false)
           setShowAlert(true)
           setProgress(0)
+
+
+          setEmptyAmountMonth(prev => prev + 1)
+          setEmptyAmountYear(prev => prev + 1)
+          setBugsInTrap(0)
+
           return DURATION
         }
         return prev - 1
@@ -60,6 +72,16 @@ function App() {
     setProgress(0)
   }
 
+  const handleEditName = () => {
+    setIsEditingName(true)
+    setTempName(name)
+  }
+
+  const handleSaveName = () => {
+    setName(tempName)
+    setIsEditingName(false)
+  }
+
   const warningComponent = () => (
     <Alert severity="warning">
       Säiliö tyhjentyy
@@ -70,7 +92,7 @@ function App() {
       <>
         <ResponsiveAppBar />
 
-        <Box sx={{ overflowY: 'auto', p: 2 }}>
+        <Box sx={{ overflowY: 'auto', p: 2, bgcolor: 'grey.200', minHeight: '100vh' }}>
 
           <Paper
             elevation={2}
@@ -81,7 +103,30 @@ function App() {
               bgcolor: 'white'
             }}
           >
-            <Typography>{name}</Typography>
+            <Box display="flex" alignItems="center" mb={2}>
+              {isEditingName ? (
+                <>
+                  <TextField
+                    value={tempName}
+                    onChange={(e) => setTempName(e.target.value)}
+                    size="small"
+                    sx={{ flexGrow: 1 }}
+                  />
+                  <IconButton onClick={handleSaveName} color="primary">
+                    <CheckIcon />
+                  </IconButton>
+                </>
+              ) : (
+                <>
+                  <Typography variant="h5" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+                    {name}
+                  </Typography>
+                  <IconButton onClick={handleEditName} size="small">
+                    <EditIcon />
+                  </IconButton>
+                </>
+              )}
+            </Box>
 
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={8}>
@@ -112,6 +157,7 @@ function App() {
               fullWidth
               onClick={buttonHandler}
               disabled={isEmptying}
+              sx={{ mt: 2 }}
             >
               Tyhjennä
             </Button>
@@ -151,11 +197,11 @@ function App() {
             }}
           >
             <Stack spacing={2}>
-              <Typography>Tilastot</Typography>
+              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>Tilastot</Typography>
               <Typography>{name} tyhjennetty viimeksi: {lastEmptyDate}</Typography>
               <Typography>Tyhjennysten määrä tämä kuukausi: {emptyAmountMonth}</Typography>
-              <Typography>Tyhjennysten määrä tämä vuosi: {emptyAmountMonth}</Typography>
-        </Stack>
+              <Typography>Tyhjennysten määrä tämä vuosi: {emptyAmountYear}</Typography>
+            </Stack>
           </Paper>
         </Box>
       </>
