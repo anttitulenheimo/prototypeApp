@@ -95,7 +95,16 @@ function App() {
       <>
         <ResponsiveAppBar />
 
-        <Box sx={{ overflowY: 'auto', p: 2, bgcolor: 'grey.200', minHeight: '100vh' }}>
+        <Box sx={{
+          height: '100vh',
+          overflowY: 'scroll',
+          WebkitOverflowScrolling: 'touch',
+          p: 2,
+          bgcolor: 'grey.200',
+          pb: 20
+        }}>
+
+
 
           <Paper
             elevation={2}
@@ -222,7 +231,8 @@ function App() {
                 borderRadius: 4,
                 p: 2,
                 bgcolor: 'white',
-                mt: 2
+                mt: 2,
+                mb: 30
               }}
             >
               <Button
