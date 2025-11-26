@@ -7,6 +7,9 @@ import Stack from '@mui/material/Stack'
 import ResponsiveAppBar from "./components/ResponsiveAppBar.jsx"
 import Battery from "./components/Battery.jsx"
 import CircularProgressWithLabel from "./components/CircularProgressWithLabel.jsx"
+import Paper from '@mui/material/Paper';
+import './app.css';
+
 
 function App() {
   const DURATION = 5
@@ -59,68 +62,71 @@ function App() {
   )
 
   return (
-    <>
-      <ResponsiveAppBar />
+      <>
+        <ResponsiveAppBar />
 
-      <Box sx={{ overflowY: 'auto', p: 2 }}>
-        <Box
-          sx={{
-            backgroundColor: 'grey.200',
-            borderRadius: 4,
-            p: 2,
-            mb: 2
-          }}
-        >
-          <Typography>{name}</Typography>
-          <Battery level={batteryLevel} charging={isCharging} />
+        <Box sx={{ overflowY: 'auto', p: 2 }}>
 
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={buttonHandler}
-          disabled={isEmptying}
-        >
-          Tyhjennä
-        </Button>
+          <Paper
+            elevation={2}
+            sx={{
+              borderRadius: 4,
+              p: 2,
+              mb: 2,
+              bgcolor: 'white'
+            }}
+          >
+            <Typography>{name}</Typography>
+            <Battery level={batteryLevel} charging={isCharging} />
 
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={buttonHandler}
+              disabled={isEmptying}
+            >
+              Tyhjennä
+            </Button>
 
-          {isEmptying && (
-            <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
-              {warningComponent()}
-              <Box display="flex" justifyContent="center" mt={2}>
-                <CircularProgressWithLabel
-                  value={progress}
-                  timeLeft={timeLeft}
-                />
-              </Box>
-            </Stack>
-          )}
+            {isEmptying && (
+              <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
+                {warningComponent()}
+                <Box display="flex" justifyContent="center" mt={2}>
+                  <CircularProgressWithLabel
+                    value={progress}
+                    timeLeft={timeLeft}
+                  />
+                </Box>
+              </Stack>
+            )}
 
-          {showAlert && !isEmptying && (
-            <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
-              <Alert severity="success">
-                Säiliö tyhjennetty onnistuneesti
-              </Alert>
+            {showAlert && !isEmptying && (
+              <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
+                <Alert severity="success">
+                  Säiliö tyhjennetty onnistuneesti
+                </Alert>
 
-              <Alert severity="info">
-                Säiliö tyhjennetty {count} kertaa
-              </Alert>
-            </Stack>
-          )}
+                <Alert severity="info">
+                  Säiliö tyhjennetty {count} kertaa
+                </Alert>
+              </Stack>
+            )}
+          </Paper>
+
+          <Paper
+            elevation={1}
+            sx={{
+              borderRadius: 4,
+              p: 2,
+              bgcolor: 'white'
+            }}
+          >
+            Toka osio
+          </Paper>
         </Box>
+      </>
+    )
 
-        <Box
-          sx={{
-            backgroundColor: 'grey.300',
-            borderRadius: 4,
-            p: 2
-          }}
-        >
-          Toka osio
-        </Box>
-      </Box>
-    </>
-  )
 }
 
 export default App
