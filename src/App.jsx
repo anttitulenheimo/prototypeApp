@@ -5,7 +5,8 @@ import Home from './components/Home'
 import Info from './components/Info'
 import Settings from './components/Settings'
 import BottomNavBar from './components/BottomNavBar'
-import './App.css' // Prevents the scroll bar
+import './App.css'
+import ResponsiveAppBar from "./components/ResponsiveAppBar.jsx"; // Prevents the scroll bar
 
 
 function App() {
@@ -60,7 +61,14 @@ function App() {
   }
 
   return (
-    <Router>
+      < ResponsiveAppBar />
+
+  )
+}
+
+export default App
+
+/*    <Router>
       <Routes>
         <Route path="/" element={
           <Home
@@ -81,8 +89,4 @@ function App() {
         <Route path="/settings" element={<Settings />} />
       </Routes>
       <BottomNavBar />
-    </Router>
-  )
-}
-
-export default App
+    </Router>*/
