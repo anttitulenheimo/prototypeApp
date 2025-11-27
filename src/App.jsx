@@ -87,7 +87,7 @@ function App() {
 
   const warningComponent = () => (
     <Alert severity="warning">
-      Säiliö tyhjentyy
+      Ansa avautuu pian
     </Alert>
   )
 
@@ -184,7 +184,7 @@ function App() {
               disabled={isEmptying}
               sx={{ mt: 2 }}
             >
-              Tyhjennä
+              Tyhjennä (viive 5 sekuntia)
             </Button>
 
             {isEmptying && (
@@ -203,11 +203,11 @@ function App() {
             {showAlert && !isEmptying && (
               <Stack sx={{ width: '100%', mt: 2 }} spacing={2}>
                 <Alert severity="success">
-                  Säiliö tyhjennetty onnistuneesti
+                  Säiliöt tyhjennetty onnistuneesti
                 </Alert>
 
                 <Alert severity="info">
-                  Säiliö tyhjennetty {count} kertaa
+                  Säiliöt tyhjennetty {count} kertaa
                 </Alert>
               </Stack>
             )}
@@ -224,8 +224,8 @@ function App() {
             <Stack spacing={2}>
               <Typography variant="h5" sx={{ fontWeight: 'bold' }}>Tilastot</Typography>
               <Typography>{name} tyhjennetty viimeksi: {lastEmptyDate}</Typography>
-              <Typography>Tyhjennysten määrä tämä kuukausi: {emptyAmountMonth}</Typography>
-              <Typography>Tyhjennysten määrä tämä vuosi: {emptyAmountYear}</Typography>
+              <Typography>Tyhjennysten määrä tässä kuussa: {emptyAmountMonth}</Typography>
+              <Typography>Tyhjennysten määrä tänä vuonna: {emptyAmountYear}</Typography>
             </Stack>
           </Paper>
 
